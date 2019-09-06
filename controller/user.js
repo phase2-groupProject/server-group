@@ -67,7 +67,11 @@ class UserController {
                     res.status(200).json({
                         token
                     })
+                } else {
+                    throw { code: 404, message: "wrong email/password" }
                 }
+            } else {
+                throw { code: 404, message: "wrong email/password" }
             }
         }).catch(next)
     }

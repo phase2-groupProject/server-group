@@ -6,18 +6,39 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    email: {
+    email:{
         type: String,
-        required: true,
-        unique:true
+        required: [true, `Email can not be empty`],
+        validate: [{
+            validator: function emailFormat(email) {
+                let checkFormat = /\S+@\S+\.\S+/;
+                return checkFormat.test(email);
+            },
+            message: props => `props is a invalid email format`
+        }, {
+            validator: function emailUnique(email) {
+                return User.findOne({ email: this.email })
+                    .then(function (user) {
+                        if (user) {
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    })
+                    .catch(function (err) {
+                        return false;
+                    })
+            },
+            message: props => `Email ${props.value} already registered by another user`
+        }]
     },
     password: {
         type: String,
         required: true
     },
-},{
+}, {
     timestamps: true,
-    versionKey: false
+        versionKey: false
 })
 
 const users = mongoose.model('users', userSchema)
