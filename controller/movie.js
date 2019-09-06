@@ -1,6 +1,6 @@
 const ToneAnalyzerV3 = require('ibm-watson/tone-analyzer/v3');
 const axios = require('axios')
-const YOUTUBE_TOKEN = 'AIzaSyDOKhbeuCCEd7lo6BJpeiZ3vKJ0jOHLiwY'
+const YOUTUBE_TOKEN = ''
 
 class movieController {
     static getMovie(req, res, next) {
