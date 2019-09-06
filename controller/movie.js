@@ -1,6 +1,6 @@
 const ToneAnalyzerV3 = require('ibm-watson/tone-analyzer/v3');
 const axios = require('axios')
-const YOUTUBE_TOKEN = 'AIzaSyDOKhbeuCCEd7lo6BJpeiZ3vKJ0jOHLiwY'
+const YOUTUBE_TOKEN = 'AIzaSyCJ-QF4qwbQbg88Sqqy7YRl-hXUZ83fVfo'
 
 class movieController {
     static getMovie(req, res, next) {
@@ -102,7 +102,7 @@ class movieController {
             url:`https://www.googleapis.com/youtube/v3/search?part=id&q=trailer${name}&type=video&key=${YOUTUBE_TOKEN}&maxResults=1`
         }).then(({data}) => {
             res.json(data.items[0].id.videoId)
-        }).catch(next)
+        }).catch(err => console.log('err',err))
 
     }
 }

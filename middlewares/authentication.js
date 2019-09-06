@@ -6,6 +6,7 @@ function authentication(req,res,next){
         req.decode = decode
         next()
     } catch(err){
+        console.log(err)
         next(err)
     }
 }
