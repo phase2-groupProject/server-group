@@ -15,9 +15,9 @@ class movieController {
         }
 
         const toneAnalyzer = new ToneAnalyzerV3({
-            version: process.env.VERSION,
-            iam_apikey: process.env.APIKEY,
-            url: process.env.URL
+            version: '2017-09-21',
+            iam_apikey: 'rSFYsDp1lEjRHw56KJqAZNDjdPenpjfEJIm3uqu4J8m9',
+            url: 'https://gateway-tok.watsonplatform.net/tone-analyzer/api'
         });
 
         toneAnalyzer.tone(params)
@@ -55,8 +55,10 @@ class movieController {
                            moviezzz.title = filtered[i].title
                            moviezzz.vote_average = filtered[i].vote_average
                            moviezzz.overview = filtered[i].overview
+                           moviezzz.image = `http://image.tmdb.org/t/p/w185${filtered[i].poster_path}`
                            kumpulan.push(moviezzz)
                        }
+                       res.json({kumpulan,mood})
                     //    let promises = []
                     //    for(let j = 0; j < kumpulan.length;j++){
                     //         let yutub = new Promise((resolve, reject) => {
